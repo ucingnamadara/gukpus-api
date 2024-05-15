@@ -5,9 +5,9 @@ const connectDB = require("./config/Database");
 
 app.use(express.json());
 
-app.use("/api", require("./routes/AuthRoute"));
-app.use("/api", require("./routes/PetRoute"));
-app.use("/api", require("./routes/UserRoute"));
+app.use("/api/auth", require("./routes/AuthRoute"));
+app.use("/api/pets", require("./routes/PetRoute"));
+app.use("/api/users", require("./routes/UserRoute"));
 
 connectDB();
 

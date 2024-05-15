@@ -14,6 +14,8 @@ const petSchema = new mongoose.Schema({
   behavioralNotes: { type: String },
   adoptionDate: { type: Date },
   insurancePolicyNumber: { type: String },
+  longitude: { type: Number },
+  latitude: { type: Number },
   isActive: { type: Boolean, default: true },
   createdAt: {
     type: Date,
