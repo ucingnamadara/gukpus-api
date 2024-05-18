@@ -5,7 +5,7 @@ function AuthMiddleware(req, res, next) {
   }
   try {
     // Verify the JWT token and decode the payload
-    const decoded = jwt.verify(token, "supercalifragilisticexpialidocious");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'supercalifragilisticexpialidocious');
 
     // Attach the decoded payload to the request object
     req.user = decoded;

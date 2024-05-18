@@ -1,8 +1,12 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
-const port = 8080;
 const connectDB = require("./config/Database");
+const port = process.env.PORT;
+const cors = require('./middlewares/CorsMiddleware');
 
+app.use(cors);
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/AuthRoute"));

@@ -13,6 +13,22 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
   },
+  address: {
+    type: String,
+    trim: true,
+  },
+  profilePicture: {
+    type: String,
+    trim: true,
+  },
+  coverPhoto: {
+    type: String,
+    trim: true,
+  },
+  bio: {
+    type: String,
+    trim: true,
+  },
   password: {
     type: String,
     required: true,

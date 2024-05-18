@@ -1,12 +1,18 @@
 class RegisterResponse {
-  constructor(userId, token) {
-    this.userId = userId;
-    this.token = token;
+  constructor(user, accessToken) {
+    this.user = {
+      userId: user.id,
+      fullName: user.fullName,
+      email: user.email,
+    }
+    this.token = {
+      accessToken: accessToken,
+    }
   }
 
   toJSON() {
     return {
-      userId: this.userId,
+      user: this.user,
       token: this.token,
     };
   }

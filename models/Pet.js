@@ -1,4 +1,5 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const petSchema = new mongoose.Schema({
   nickname: { type: String, required: true },
@@ -7,7 +8,11 @@ const petSchema = new mongoose.Schema({
   age: { type: Number },
   gender: { type: String },
   weight: { type: Number },
-  ownerId: { type: String },
+  ownerId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   vaccinationStatus: { type: String },
   medicalHistory: { type: String },
   dietaryRequirements: { type: String },
@@ -16,6 +21,7 @@ const petSchema = new mongoose.Schema({
   insurancePolicyNumber: { type: String },
   longitude: { type: Number },
   latitude: { type: Number },
+  photos: [{link: {type: String}, title: {type: String}}],
   isActive: { type: Boolean, default: true },
   createdAt: {
     type: Date,

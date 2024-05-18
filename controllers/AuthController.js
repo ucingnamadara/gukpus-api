@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const process = require("process");
 
 async function register(req, res) {
-  const { fullName, email, password } = req.body;
+  const { fullName, email, password, confirmPassword, otp, address, bio } = req.body;
 
   try {
     // Check if the email is already registered
@@ -15,11 +15,17 @@ async function register(req, res) {
       return res.status(400).json({ error: "Email is already registered" });
     }
 
+    if (password!== confirmPassword) {
+      return res.status(400).json({ error: "Passwords do not match" });
+    }
+
     // Create a new user
     const newUser = new User({
       fullName,
       email,
       password,
+      address,
+      bio,
     });
 
     // Hash the password before saving
@@ -32,11 +38,11 @@ async function register(req, res) {
     // Generate a JWT token
     const token = jwt.sign(
       { userId: newUser._id, fullName: newUser.fullName },
-      "supercalifragilisticexpialidocious",
-      { expiresIn: "1h" },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_DURATION },
     );
 
-    const registerResponse = new RegisterResponse(newUser._id, token);
+    const registerResponse = new RegisterResponse(newUser, token);
     return res.status(201).json({
       message: "User registered successfully",
       data: registerResponse.toJSON(),
@@ -69,12 +75,12 @@ async function login(req, res) {
   // Generate a JWT token
   const token = jwt.sign(
     { userId: user._id },
-    "supercalifragilisticexpialidocious",
-    { expiresIn: "1h" },
+    process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_DURATION },
   );
 
   // Return the token in the response
-  const loginResponse = new LoginResponse(user._id, token);
+  const loginResponse = new LoginResponse(user, token);
   return res
     .status(200)
     .json({ message: "Login Successfully", data: loginResponse.toJSON() });

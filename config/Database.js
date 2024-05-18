@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const MONGODB_URI =
-  process.env.MONGODB_URI ||
-  "mongodb://mongo:mongo@localhost:27017/gukpus?authSource=admin";
+  process.env.MONGODB_URI;
 
 const connectDB = async () => {
   try {
