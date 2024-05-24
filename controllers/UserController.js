@@ -2,13 +2,13 @@ const User = require("../models/User");
 
 async function update(req, res) {
   try {
-    const { fullName, email } = req.body;
+    const { fullName, email, phoneNumber, bio,} = req.body;
     const userId = req.user.userId;
 
     // Find the user by ID and update the fields
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { fullName, email, updatedAt: new Date() },
+      { fullName, email, phoneNumber, bio, updatedAt: new Date() },
       { new: true, runValidators: true },
     );
 
@@ -17,13 +17,7 @@ async function update(req, res) {
     }
     res.status(200).json({
       message: "User updated successfully",
-      data: new UpdateUserResponse(
-        updatedUser._id,
-        updatedUser.fullName,
-        updatedUser.email,
-        updatedUser.createdAt,
-        updatedUser.updatedAt,
-      ).toJSON(),
+      data: {id: updatedUser._id}
     });
   } catch (error) {
     console.error(error);

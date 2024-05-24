@@ -9,5 +9,4 @@ routes.get("/:id", AuthMiddleware, PetController.getPetById);
 routes.put("/:id", AuthMiddleware, PetController.updatePet);
 routes.delete("/:id", AuthMiddleware, PetController.deletePet);
 
-
 module.exports = routes;

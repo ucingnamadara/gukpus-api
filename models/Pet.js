@@ -10,7 +10,7 @@ const petSchema = new mongoose.Schema({
   weight: { type: Number },
   ownerId: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
   vaccinationStatus: { type: String },
@@ -18,10 +18,11 @@ const petSchema = new mongoose.Schema({
   dietaryRequirements: { type: String },
   behavioralNotes: { type: String },
   adoptionDate: { type: Date },
+  dateOfBirth: { type: Date },
   insurancePolicyNumber: { type: String },
   longitude: { type: Number },
   latitude: { type: Number },
-  photos: [{link: {type: String}, title: {type: String}}],
+  photos: [{ link: { type: String }, title: { type: String } }],
   isActive: { type: Boolean, default: true },
   createdAt: {
     type: Date,
