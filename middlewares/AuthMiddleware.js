@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 function AuthMiddleware(req, res, next) {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
@@ -16,6 +18,7 @@ function AuthMiddleware(req, res, next) {
     // Proceed to the next middleware or route handler
     next();
   } catch (err) {
+    console.log(err);
     // Handle invalid or expired tokens
     return res.status(403).json({ error: "Invalid token" });
   }

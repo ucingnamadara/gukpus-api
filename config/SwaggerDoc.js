@@ -15,14 +15,14 @@ const options = {
       },
     ],
     components: {
-        securitySchemes: {
-            bearerAuth: {
-            type: "http",
-            scheme: "bearer",
-            bearerFormat: "JWT",
-            },
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
         },
-      }
+      },
+    },
   },
   apis: ["./routes/*.js"], // Path to the API routes
 };

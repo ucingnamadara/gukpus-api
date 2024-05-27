@@ -38,7 +38,7 @@ async function register(req, res) {
       address,
       bio,
       phoneNumber,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     // save user
@@ -88,7 +88,10 @@ async function login(req, res) {
   // Return the token in the response
   return res
     .status(200)
-    .json({ message: "Login Successfully", data: new UserAuthResponse(user, token).toJSON() });
+    .json({
+      message: "Login Successfully",
+      data: new UserAuthResponse(user, token).toJSON(),
+    });
 }
 
 module.exports = {

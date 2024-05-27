@@ -12,6 +12,8 @@ const router = new Router();
  *   schemas:
  *     RegisterUserRequest:
  *       $ref: '#/definitions/schemas/RegisterUserRequest'
+ *     LoginSchema:
+ *       $ref: '#/definitions/schemas/LoginSchema'
  *     UserAuthResponse:
  *       $ref: '#/definitions/schemas/UserAuthResponse'
  *
@@ -36,7 +38,13 @@ const router = new Router();
  *           type: string
  *         address:
  *           type: string
- *
+ *     LoginSchema:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *         password:
+ *           type: string
  *     UserAuthResponse:
  *       type: object
  *       properties:
@@ -88,6 +96,12 @@ router.post("/register", AuthController.register);
  *   post:
  *     tags: [Auth API]
  *     summary: Login with existing user
+ *     requestBody:
+ *       require: true
+ *       content: 
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/LoginSchema'
  *     responses:
  *       '200':
  *         description: Successful response
